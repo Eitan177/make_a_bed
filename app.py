@@ -16,13 +16,16 @@ perform_liftover = st.sidebar.checkbox("Perform LiftOver", value=(input_assembly
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Input Format Examples")
-st.sidebar.code("chr1:1000000\nchr2:5000000-5001000\n3:1234567-1234890")
+st.sidebar.code("chr1:1000000\nchr2:5000000-5001000\n3:1,234,567-1,234,890")
 
 def parse_position(line):
     """Parse a genomic position string into chr, start, end"""
     line = line.strip()
     if not line:
         return None
+    
+    # Remove commas from numbers
+    line = line.replace(',', '')
     
     # Add 'chr' prefix if missing
     if not line.startswith('chr'):
@@ -86,7 +89,7 @@ def liftover_pyliftover(chrom, start, end, from_assembly, to_assembly):
 
 # Main input area
 st.markdown("### Enter Genomic Positions")
-st.markdown("**One position per line.** Formats: `chr1:1000000` or `chr1:1000000-1001000`")
+st.markdown("**One position per line.** Formats: `chr1:1000000` or `chr1:1,000,000-1,001,000` (commas optional)")
 
 input_text = st.text_area(
     "Paste your positions here:",
