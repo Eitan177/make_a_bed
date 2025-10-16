@@ -1,3 +1,2 @@
-StringIO
 re
 requests
