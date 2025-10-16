@@ -81,7 +81,7 @@ input_text = st.text_area(
     placeholder="chr1:1000000\nchr2:5000000-5001000\nchr3:1234567"
 )
 
-if st.button("🔄 Convert to BED", type="primary"):
+if st.button("Convert to BED", type="primary"):
     if not input_text.strip():
         st.warning("Please enter some genomic positions.")
     else:
@@ -135,12 +135,12 @@ if st.button("🔄 Convert to BED", type="primary"):
                 st.text(line)
         
         if liftover_failed:
-            st.warning(f"⚠️ LiftOver failed for {len(liftover_failed)} position(s):")
+            st.warning(f"LiftOver failed for {len(liftover_failed)} position(s):")
             for line in liftover_failed:
                 st.text(line)
 
 # Information section
-with st.expander("ℹ️ About BED Format"):
+with st.expander("About BED Format"):
     st.markdown("""
     **BED (Browser Extensible Data)** format is a tab-delimited text format for genomic intervals.
     
